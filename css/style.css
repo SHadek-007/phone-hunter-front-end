@@ -15,13 +15,15 @@ body{
     display: none;
 }
   
-#numerical-error,#blank-error {
+#number-error,#empty-error {
     display: none;
 } 
 #unknown-error {
     display: none;
 }
-  
+#load-more{
+    display: none;
+}  
 @media only screen and (max-width: 688px) {
 
     .search-field{

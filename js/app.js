@@ -1,7 +1,8 @@
-const spinner = (mode) => {
-  return (document.getElementById("spinner").style.display = mode);
+// Spinner Function 
+const spinner = toggole => {
+  return (document.getElementById("spinner").style.display = toggole);
 };
-
+// Error Message Function 
 const inputError = (id, display) => {
   document.getElementById(id).style.display = display;
 };
@@ -14,24 +15,24 @@ const loadAllPhones = () =>{
     const searchBox = document.getElementById('search-box');
     const searchText = searchBox.value;
     if (searchText === "") {
-      inputError("blank-error", "block");
-      inputError("numerical-error", "none");
+      inputError("empty-error", "block");
+      inputError("number-error", "none");
       spinner("none");
       return;
     }
     if (isNaN(searchText) === false) {
-      inputError("numerical-error", "block");
-      inputError("blank-error", "none");
+      inputError("number-error", "block");
+      inputError("empty-error", "none");
       spinner("none");
       searchBox.value = '';
       return;
     }else if(searchText !== ""){
-      inputError("numerical-error", "none");
-      inputError("blank-error", "none");
+      inputError("number-error", "none");
+      inputError("empty-error", "none");
       const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
       fetch(url)
       .then(res => res.json())
-      .then(data => loadDisplayPhones(data.data))
+      .then(data => loadDisplayPhones(data.data.slice(0,20)))
       searchBox.value = '';
     }
 }
@@ -56,8 +57,17 @@ const loadDisplayPhones = phones =>{
                 </div>
             </div>
             `;
+            document.getElementById('load-more').style.display = 'block';
             phoneContainer.appendChild(div);
     });
+}
+const loadMoreData = () =>{
+  const searchBox = document.getElementById('search-box');
+    const searchText = searchBox.value;
+  const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
+      fetch(url)
+      .then(res => res.json())
+      .then(data => loadDisplayPhones(data.data.slice(20,100)))
 }
 const loadPhoneDetails = phoneId =>{
     const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
@@ -67,7 +77,7 @@ const loadPhoneDetails = phoneId =>{
 }
 const displayPhoneDetails = singlePhone =>{
   document.getElementById('phone-details').textContent = '';
-    window.scrollTo(0, 40);
+    window.scroll(0, 50);
     const detailsPhoneDiv = document.getElementById('phone-details');
     const div = document.createElement('div');
     div.classList.add('col');
