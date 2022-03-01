@@ -5,12 +5,15 @@ html{
 body{
     font-family: 'Poppins', sans-serif;
 }
+/* search field width  */
 .search-field{
     width: 65%;
 }
+/* phone details card width  */
 .phone-details{
     width: 60%;
 }
+/* error message part  */
 #spinner {
     display: none;
 }
@@ -24,6 +27,7 @@ body{
 #load-more{
     display: none;
 }  
+/* mobile version responsive */
 @media only screen and (max-width: 688px) {
 
     .search-field{
