@@ -1,12 +1,12 @@
 // Spinner Function 
 const spinner = toggole => {
   return (document.getElementById("spinner").style.display = toggole);
-};
+}
 // Error Message Function 
 const inputError = (id, display) => {
   document.getElementById(id).style.display = display;
-};
-
+}
+// load all phone data 
 const loadAllPhones = () =>{
     document.getElementById('search-result').textContent = '';
     document.getElementById('phone-details').textContent = '';
@@ -14,36 +14,43 @@ const loadAllPhones = () =>{
     
     const searchBox = document.getElementById('search-box');
     const searchText = searchBox.value;
+    // empty error function 
     if (searchText === "") {
       inputError("empty-error", "block");
       inputError("number-error", "none");
       spinner("none");
       return;
     }
+    // number error function 
     if (isNaN(searchText) === false) {
       inputError("number-error", "block");
       inputError("empty-error", "none");
       spinner("none");
       searchBox.value = '';
       return;
-    }else if(searchText !== ""){
+    }
+    // data fetching
+    else if(searchText !== ""){
       inputError("number-error", "none");
       inputError("empty-error", "none");
       const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
       fetch(url)
       .then(res => res.json())
-      .then(data => loadDisplayPhones(data.data.slice(0,20)))
+      .then(data => loadDisplayPhones(data.data))
       searchBox.value = '';
     }
 }
+// show all phones in display
 const loadDisplayPhones = phones =>{
   document.getElementById("spinner").style.display = "none";
     const phoneContainer = document.getElementById('search-result');
+    // unknown error function 
     if(phones.length == 0){
       document.getElementById('unknown-error').style.display = 'block';
     }else{
       document.getElementById('unknown-error').style.display = 'none';
     }
+    // all phone data looping
     phones.forEach(phone => {
         const div = document.createElement('div');
         div.classList.add('col');
@@ -57,24 +64,18 @@ const loadDisplayPhones = phones =>{
                 </div>
             </div>
             `;
-            document.getElementById('load-more').style.display = 'block';
             phoneContainer.appendChild(div);
     });
 }
-const loadMoreData = () =>{
-  const searchBox = document.getElementById('search-box');
-    const searchText = searchBox.value;
-  const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
-      fetch(url)
-      .then(res => res.json())
-      .then(data => loadDisplayPhones(data.data.slice(20,100)))
-}
+
+// load single phone details  
 const loadPhoneDetails = phoneId =>{
     const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
     fetch(url)
     .then(res => res.json())
     .then(data => displayPhoneDetails(data.data))
 }
+// show single phone details 
 const displayPhoneDetails = singlePhone =>{
   document.getElementById('phone-details').textContent = '';
     window.scroll(0, 50);
