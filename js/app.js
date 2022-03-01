@@ -36,7 +36,7 @@ const loadAllPhones = () =>{
       const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
       fetch(url)
       .then(res => res.json())
-      .then(data => loadDisplayPhones(data.data))
+      .then(data => loadDisplayPhones(data.data.slice(0,20)))
       searchBox.value = '';
     }
 }
