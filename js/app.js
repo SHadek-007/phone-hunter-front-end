@@ -99,7 +99,7 @@ const displayPhoneDetails = singlePhone =>{
     </tr>
     <tr>
       <th scope="row">Storage</th>
-      <td>${singlePhone.mainFeatures.storage}</td>
+      <td>${singlePhone.mainFeatures.storage ? singlePhone.mainFeatures.storage: "No Storage Found"}</td>
     </tr>
     <tr>
       <th scope="row">Display</th>
@@ -107,15 +107,15 @@ const displayPhoneDetails = singlePhone =>{
     </tr>
     <tr>
       <th scope="row">Chipset</th>
-      <td>${singlePhone.mainFeatures.chipSet}</td>
+      <td>${singlePhone.mainFeatures.chipSet ? singlePhone.mainFeatures.chipSet: "No Chipset Found"}</td>
     </tr>
     <tr>
       <th scope="row">Memory</th>
-      <td>${singlePhone.mainFeatures.memory}</td>
+      <td>${singlePhone.mainFeatures.memory ? singlePhone.mainFeatures.memory: "No Memory Found"}</td>
     </tr>
     <tr>
-      <th scope="row">Chipset</th>
-      <td>${singlePhone.mainFeatures.chipSet}</td>
+      <th scope="row">Sensors</th>
+      <td>${singlePhone.mainFeatures.sensors.join(", ")}</td>
     </tr>
     <tr>
       <th scope="row" rowspan="6">Others</th>
@@ -138,7 +138,6 @@ const displayPhoneDetails = singlePhone =>{
     </tr>
   </tbody>
 </table>
-<p class="card-text"><span class="fw-bold">Sensors: </span> ${singlePhone.mainFeatures.sensors}</p>
             </div>
         `;
     detailsPhoneDiv.appendChild(div);
