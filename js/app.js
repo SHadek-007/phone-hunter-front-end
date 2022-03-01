@@ -119,21 +119,21 @@ const displayPhoneDetails = singlePhone =>{
     </tr>
     <tr>
       <th scope="row" rowspan="6">Others</th>
-      <td><span class="fw-bold">Bluetooth:</span> ${singlePhone.others.Bluetooth}</td>
+      <td><span class="fw-bold">Bluetooth:</span> ${singlePhone.others?.Bluetooth ? singlePhone.others.Bluetooth: "Bluetooth info is Not Available"}</td>
       <tr>
-      <td><span class="fw-bold">GPS:</span> ${singlePhone.others.GPS}</td>
+      <td><span class="fw-bold">GPS:</span> ${singlePhone.others?.GPS ? singlePhone.others.GPS: "GPS info is Not Available"}</td>
       </tr>
       <tr>
-      <td><span class="fw-bold">NFC:</span> ${singlePhone.others.NFC}</td>
+      <td><span class="fw-bold">NFC:</span> ${singlePhone.others?.NFC ? singlePhone.others.NFC: "NFC info is Not Available"}</td>
       </tr>
       <tr>
-      <td><span class="fw-bold">Radio:</span> ${singlePhone.others.Radio}</td>
+      <td><span class="fw-bold">Radio:</span> ${singlePhone.others?.Radio ? singlePhone.others.Radio: "Radio info is Not Available"}</td>
       </tr>
       <tr>
-      <td><span class="fw-bold">USB:</span> ${singlePhone.others.USB}</td>
+      <td><span class="fw-bold">USB:</span> ${singlePhone.others?.USB ? singlePhone.others.USB: "USB info is Not Available"}</td>
       </tr>
       <tr>
-      <td><span class="fw-bold">WLAN:</span> ${singlePhone.others.WLAN}</td>
+      <td><span class="fw-bold">WLAN:</span> ${singlePhone.other?.WLAN ? singlePhone.others.WLAN: "WLAN info is Not Available"}</td>
       </tr>
     </tr>
   </tbody>
