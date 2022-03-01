@@ -16,6 +16,18 @@
         <input id="search-box" type="text" class="form-control " placeholder="Search Your Favourite Phone" aria-label="Recipient's username" aria-describedby="basic-addon2">
         <button onclick="loadAllPhones()" class="input-group-text" id="btn-search">Search</button>
     </div>
+
+    <!-- Error Message Start -->
+    <h3 class="text-center text-danger" id="numerical-error"> Please enter a Phone Name not a Number!</h3>
+    <h3 class="text-center text-danger" id="blank-error">Please Write a Phone Name!</h3>
+    <h3 class="text-center text-danger" id="unknown-error">Something is not right!  Please try again later..</h3>
+    <!-- Error Message End -->
+
+    <!-- spinner -->
+    <section class="d-flex justify-content-center">
+        <div class="spinner-border" role="status" id="spinner"></div>
+    </section>
+
     <!-- Single Phone Details Start -->
     <div id="phone-details" class="row row-cols-1 row-cols-md-1 g-4 mt-3 mx-auto">
     </div>

@@ -1,14 +1,48 @@
+const spinner = (mode) => {
+  return (document.getElementById("spinner").style.display = mode);
+};
+
+const inputError = (id, display) => {
+  document.getElementById(id).style.display = display;
+};
+
 const loadAllPhones = () =>{
+    document.getElementById('search-result').textContent = '';
+    document.getElementById('phone-details').textContent = '';
+    spinner('block');
+    
     const searchBox = document.getElementById('search-box');
     const searchText = searchBox.value;
-    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
-    fetch(url)
-    .then(res => res.json())
-    .then(data => loadDisplayPhones(data.data))
-    searchBox.value = '';
+    if (searchText === "") {
+      inputError("blank-error", "block");
+      inputError("numerical-error", "none");
+      spinner("none");
+      return;
+    }
+    if (isNaN(searchText) === false) {
+      inputError("numerical-error", "block");
+      inputError("blank-error", "none");
+      spinner("none");
+      searchBox.value = '';
+      return;
+    }else if(searchText !== ""){
+      inputError("numerical-error", "none");
+      inputError("blank-error", "none");
+      const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
+      fetch(url)
+      .then(res => res.json())
+      .then(data => loadDisplayPhones(data.data))
+      searchBox.value = '';
+    }
 }
 const loadDisplayPhones = phones =>{
+  document.getElementById("spinner").style.display = "none";
     const phoneContainer = document.getElementById('search-result');
+    if(phones.length == 0){
+      document.getElementById('unknown-error').style.display = 'block';
+    }else{
+      document.getElementById('unknown-error').style.display = 'none';
+    }
     phones.forEach(phone => {
         const div = document.createElement('div');
         div.classList.add('col');
@@ -32,7 +66,8 @@ const loadPhoneDetails = phoneId =>{
     .then(data => displayPhoneDetails(data.data))
 }
 const displayPhoneDetails = singlePhone =>{
-    console.log(singlePhone);
+  document.getElementById('phone-details').textContent = '';
+    window.scrollTo(0, 40);
     const detailsPhoneDiv = document.getElementById('phone-details');
     const div = document.createElement('div');
     div.classList.add('col');
