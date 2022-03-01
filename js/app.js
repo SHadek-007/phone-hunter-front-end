@@ -133,7 +133,7 @@ const displayPhoneDetails = singlePhone =>{
       <td><span class="fw-bold">USB:</span> ${singlePhone.others?.USB ? singlePhone.others.USB: "USB info is Not Available"}</td>
       </tr>
       <tr>
-      <td><span class="fw-bold">WLAN:</span> ${singlePhone.other?.WLAN ? singlePhone.others.WLAN: "WLAN info is Not Available"}</td>
+      <td><span class="fw-bold">WLAN:</span> ${singlePhone.others?.WLAN ? singlePhone.others.WLAN: "WLAN info is Not Available"}</td>
       </tr>
     </tr>
   </tbody>
